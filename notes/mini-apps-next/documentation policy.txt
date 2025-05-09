@@ -1,0 +1,73 @@
+# DOCUMENTATION AND CODE IMPLEMENTATION POLICY
+
+## COMPLETE CODE IMPLEMENTATION AND DOCUMENTATION REQUIREMENTS
+
+### Code Implementation Standards
+
+1. **COMPLETE IMPLEMENTATION**: All code must be fully implemented with no TODOs or placeholders
+2. **FUNCTIONAL CODE**: All implementations must be functional and ready for execution
+3. **ERROR HANDLING**: Proper error handling must be included in all implementations
+4. **TYPE SAFETY**: All TypeScript code must have proper type definitions with explicit interfaces/types
+5. **PERFORMANCE OPTIMIZATION**: Code must be optimized for performance where applicable
+6. **REUSABILITY**: Components and hooks should be designed for maximum reusability
+7. **MAINTAINABILITY**: Code should be structured for long-term maintainability with clear separation of concerns
+
+### Documentation Standards
+
+1. **COMPREHENSIVE DOCUMENTATION**: All code must be thoroughly documented
+2. **JSDoc COMMENTS**: Use JSDoc style comments for functions, classes, and methods
+3. **INLINE COMMENTS**: Include explanatory comments for complex logic
+4. **USAGE EXAMPLES**: Provide usage examples where appropriate
+5. **PARAMETER DOCUMENTATION**: Document all parameters and return values
+
+## ALLOWED DOCUMENTATION CREATION LOCATIONS
+
+Documentation and fully implemented code files may ONLY be created in the following locations:
+
+```
+src/hooks/**/*         # Custom hooks documentation and implementation
+src/app/{route name}.content.tsx  # Route content components
+src/components/room/** # Room-related components
+```
+
+## Documentation Format
+
+### For Functions and Hooks
+
+```typescript
+/**
+ * Description of the function/hook
+ *
+ * @param {Type} paramName - Description of the parameter
+ * @returns {ReturnType} Description of the return value
+ * @example
+ * // Example usage
+ * const result = useHook(param);
+ */
+```
+
+### For Components
+
+```typescript
+/**
+ * ComponentName - Description of the component
+ *
+ * @param {Type} props.propName - Description of the prop
+ * @returns {JSX.Element} The rendered component
+ * @example
+ * // Example usage
+ * <ComponentName propName={value} />
+ */
+```
+
+## Implementation Requirements
+
+1. All documentation must accurately reflect the actual implementation
+2. Code must be fully tested before submission
+3. Documentation must be kept in sync with code changes
+4. Follow project-specific naming conventions and coding standards
+5. Include relevant imports and dependencies
+
+## Remember
+
+Documentation and implementation quality are equally important. All code must be production-ready with comprehensive documentation.

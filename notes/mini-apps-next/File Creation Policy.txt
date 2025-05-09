@@ -1,0 +1,15 @@
+# IMPORTANT INSTRUCTION: FILE CREATION POLICY
+
+## DO NOT CREATE NEW FILES WITHOUT EXPLICIT INSTRUCTIONS
+
+When working with the Next.js app router project structure for mini-apps:
+
+1. **NEVER** create new files unless explicitly instructed with the exact filename
+2. **ALWAYS** follow the provided project structure exactly as specified
+3. **ONLY** modify existing files when directed to do so
+4. **DO NOT** assume file creation permissions without clear instructions
+5. **VERIFY** file paths before any creation or modification operations
+
+## Remember
+
+The structure is absolute and must be followed precisely. Do not deviate from the specified pattern or create additional files without clear authorization.

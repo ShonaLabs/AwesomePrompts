@@ -1,0 +1,131 @@
+---
+title: Next.js App Router Structure
+description: Implementation guide for Next.js app router mini-apps with Frame metadata
+---
+
+# Next.js App Router Structure for Mini-Apps
+
+This guide outlines the required structure for implementing mini-apps in Next.js app router with Frame metadata support.
+
+## Project Structure
+
+Each route in your Next.js application must follow this structure:
+
+```
+route/
+├── {route-name}.app.tsx    # Client-side dynamic component (no SSR)
+├── {route-name}.content.tsx # Main application content
+└── page.tsx                # Server component with Frame metadata
+```
+
+## Implementation Requirements
+
+### 1. Page.tsx (Server Component with Frame Metadata)
+
+Each `page.tsx` must include Frame metadata for proper rendering in social platforms:
+
+```tsx
+const framePreviewMetadata = {
+  version: "next",
+  imageUrl: "/images/og-image.png",
+  button: {
+    title: "Join ShonClub",
+    action: {
+      type: "launch_frame",
+      name: "ShonClub",
+      url: "/",
+      splashImageUrl: "/images/splash.png",
+      iconUrl: "/images/icon.png",
+      splashBackgroundColor: "#181A20",
+    },
+  },
+};
+
+export const revalidate = 300;
+
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    title: "ShonClub - Audio Social Rooms",
+    openGraph: {
+      title: "ShonClub - Audio Social Rooms",
+      description: "Join ShonClub's audio rooms to connect with others in real-time conversations. Create your own room or join existing ones to chat and interact.",
+      images: [
+        {
+          url: "/images/og-image.png",
+          width: 1200,
+          height: 630,
+          alt: "ShonClub Audio Rooms",
+        },
+      ],
+    },
+    other: {
+      "fc:frame": JSON.stringify(framePreviewMetadata),
+    },
+  };
+}
+```
+
+### 2. {route-name}.app.tsx (Client-side Dynamic Component)
+
+This component should dynamically import the content component with SSR disabled:
+
+```tsx
+"use client";
+
+import dynamic from "next/dynamic";
+
+// Dynamic import for components that use client-side features
+const RouteContent = dynamic(() => import("./{route-name}.content"), {
+  ssr: false,
+});
+
+export default function RouteApp() {
+  return <RouteContent />;
+}
+```
+
+### 3. {route-name}.content.tsx (Main Application Content)
+
+This component contains the actual application logic and UI. It can import and use components from your shared components directory:
+
+```tsx
+"use client";
+
+import { useState, useEffect } from "react";
+import { SomeComponent } from "@/components/SomeComponent";
+
+export default function RouteContent() {
+  // Your application logic here
+  
+  return (
+    <div>
+      <SomeComponent />
+      {/* Your application UI */}
+    </div>
+  );
+}
+```
+
+## Important Notes
+
+- The structure is absolute and must be followed exactly as specified
+- Each route must have all three components: page.tsx, {route-name}.app.tsx, and {route-name}.content.tsx
+- The page.tsx file must include proper Frame metadata for social sharing
+- Client-side components should be dynamically imported with SSR disabled
+- Content components can import from your shared components directory
+
+## Example Implementation
+
+For a route named "home":
+
+```
+/
+├── @home.app.tsx
+├── @home.content.tsx
+└── @page.tsx
+```
+
+Where:
+- page.tsx contains the Frame metadata
+- home.app.tsx dynamically imports home.content.tsx with SSR disabled
+- home.content.tsx contains the actual application logic and UI
